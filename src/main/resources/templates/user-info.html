@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>User Info</title>
+</head>
+<body>
+<div th:replace="header"></div>
+<div class="col-md-offset-2">
+    <h2>Info about User</h2>
+</div>
+<form class="form-horizontal" th:object="${user}">
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="id">ID:</label>
+        <div class="col-sm-8">
+            <b class="form-control" id="id" th:text="*{id}"></b>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="first-name">First name:</label>
+        <div class="col-sm-8">
+            <b class="form-control" id="first-name" th:text="*{firstName}"></b>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="last-name">Last name:</label>
+        <div class="col-sm-8">
+            <b class="form-control" id="last-name" th:text="*{lastName}"></b>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="email">E-mail:</label>
+        <div class="col-sm-8">
+            <b class="form-control" id="email" th:text="*{email}"></b>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="role">Role:</label>
+        <div class="col-sm-8">
+            <b class="form-control" id="role" th:text="*{role.getName()}"></b>
+        </div>
+    </div>
+    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')
+                    or #authorization.expression('hasAuthority(''USER'')') and #authentication.details.id == user.id}">
+        <div class="col-sm-offset-2 col-sm-8">
+            <a th:href="@{|/users/${user.id}/update|}">Edit</a> |
+            <a th:href="@{|/users/${user.id}/delete|}">Remove</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>
