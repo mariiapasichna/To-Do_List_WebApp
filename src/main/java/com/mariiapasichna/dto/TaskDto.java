@@ -2,6 +2,7 @@ package com.mariiapasichna.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 public class TaskDto {
     private long id;
@@ -67,5 +68,19 @@ public class TaskDto {
 
     public void setStateId(long stateId) {
         this.stateId = stateId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TaskDto)) return false;
+        TaskDto taskDto = (TaskDto) o;
+        return getId() == taskDto.getId() &&
+                Objects.equals(getName(), taskDto.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName());
     }
 }
