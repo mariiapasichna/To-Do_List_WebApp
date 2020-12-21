@@ -3,6 +3,8 @@ package com.mariiapasichna.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +23,8 @@ public class Task {
     )
     private long id;
 
+    @NotNull
+    @NotBlank(message = "The 'name' cannot be empty")
     @Column(name = "name", nullable = false)
     private String name;
 

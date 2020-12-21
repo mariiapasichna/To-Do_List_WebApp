@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,6 +24,7 @@ public class State {
     )
     private long id;
 
+    @NotNull
     @NotBlank(message = "The 'name' cannot be empty")
     @Column(name = "name", nullable = false, unique = true)
     private String name;
