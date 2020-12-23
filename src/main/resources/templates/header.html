@@ -1,5 +1,6 @@
-<div xmlns:th="http://www.thymeleaf.org"
-     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
      sec:authorize="isAuthenticated()">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -12,7 +13,7 @@
             </div>
             <div class="navbar-header" style="position: absolute; top: 10px; right: 20px;">
         <span class="navbar-brand">
-            Hello <a th:href="@{|/users/${#authentication.details.id}/read|}"
+            Hello <a th:href="@{|/users/{authentication.details.id}/read|}"
                      th:text="${#authentication.details.firstName}"></a>!
         </span>
                 <form th:action="@{/logout}" method="post" style="display: inline-block">
@@ -21,4 +22,4 @@
             </div>
         </div>
     </nav>
-</div>
+</html>

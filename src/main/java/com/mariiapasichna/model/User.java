@@ -15,7 +15,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-
     private static final String NAME_REGEXP = "[A-Z][a-z]+(-[A-Z][a-z]+){0,1}";
 
     @Id
@@ -160,7 +159,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 
     @Override
     public boolean equals(Object o) {
