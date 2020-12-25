@@ -19,6 +19,10 @@ public class WebAuthenticationManager implements AuthenticationManager {
         this.providers = providers;
     }
 
+    public List<AuthenticationProvider> getProviders() {
+        return providers;
+    }
+
     @Override
     public Authentication authenticate(Authentication authentication) {
         Authentication webAuthentication;

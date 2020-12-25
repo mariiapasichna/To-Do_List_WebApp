@@ -1,6 +1,7 @@
 package com.mariiapasichna.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,12 +13,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class WebAuthenticationProvider implements AuthenticationProvider {
-
     private UserDetailsService userService;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public void setUserService(UserDetailsService userService) {
+    public void setUserService(@Qualifier("userServiceImpl") UserDetailsService userService) {
         this.userService = userService;
     }
 
